@@ -24,7 +24,8 @@ var gulp 		= require('gulp'),
                         .pipe(plugins.replace('/*!', '/*'))
                         .pipe(plugins.rename({suffix: ".min"}))
                         .pipe(plugins.uglify())
-                        .pipe(gulp.dest(dirs._build+'/js/libs/'));
+                        //.pipe(gulp.dest(dirs._build+'/js/libs/'));
+                        .pipe(gulp.dest('js/libs/'));
         });
 
         gulp.task('copy:html5shiv', function () {
@@ -32,7 +33,8 @@ var gulp 		= require('gulp'),
                         .pipe(plugins.replace('/*!', '/*'))
                         .pipe(plugins.rename({suffix: ".min"}))
                         .pipe(plugins.uglify())
-                        .pipe(gulp.dest(dirs._build+'/js/libs/'));
+                        //.pipe(gulp.dest(dirs._build+'/js/libs/'));
+                        .pipe(gulp.dest('js/libs/'));
         });
 
         gulp.task('copy:respond', function () {
@@ -40,7 +42,8 @@ var gulp 		= require('gulp'),
                         .pipe(plugins.replace('/*!', '/*'))
                         .pipe(plugins.rename({suffix: ".min"}))
                         .pipe(plugins.uglify())
-                        .pipe(gulp.dest(dirs._build+'/js/libs/'));
+                        //.pipe(gulp.dest(dirs._build+'/js/libs/'));
+                        .pipe(gulp.dest('js/libs/'));
         });
 
         gulp.task('copy:normalize', function () {
@@ -52,11 +55,13 @@ var gulp 		= require('gulp'),
 
         gulp.task('copy:font-awesome', function () {
             gulp.src(dirs._components+'/font-awesome/fonts/*')
-                        .pipe(gulp.dest(dirs._build+'/fonts/font-awesome/'));
+                        //.pipe(gulp.dest(dirs._build+'/fonts/font-awesome/'));
+                        .pipe(gulp.dest('fonts/font-awesome/'));
 
             gulp.src(dirs._components+'/font-awesome/css/font-awesome.css')
                         .pipe(plugins.replace('/*!', '/*'))
-                        .pipe(plugins.replace('../fonts/', '../../build/fonts/font-awesome/'))
+                        //.pipe(plugins.replace('../fonts/', '../../build/fonts/font-awesome/'))
+                        .pipe(plugins.replace('../fonts/', '../../fonts/font-awesome/'))
                         .pipe(plugins.rename('font-awesome.scss'))
                         .pipe(gulp.dest(dirs._assets+'/scss/atoms/'));
         });
@@ -71,7 +76,8 @@ var gulp 		= require('gulp'),
 		            interlaced:  true,
 		            use:         [pngquant()]
 		        }))
-		        .pipe(gulp.dest(dirs._build+'/img'));
+                //.pipe(gulp.dest(dirs._build+'/img'));
+		        .pipe(gulp.dest('img'));
 		});
 
 		//Svg2png
@@ -79,7 +85,8 @@ var gulp 		= require('gulp'),
 		    return gulp.src(dirs._assets+'/img/*.svg')
 		        .pipe(plugins.raster())
 		        .pipe(plugins.rename({extname: '.png'}))
-		        .pipe(gulp.dest(dirs._build+'/img'));
+                //.pipe(gulp.dest(dirs._build+'/img'));
+		        .pipe(gulp.dest('img'));
 		});
 
 		//Sprite
@@ -91,7 +98,8 @@ var gulp 		= require('gulp'),
 				algorithm: 'binary-tree',
 				cssTemplate: dirs._assets+'/scss/molecules/icons.mustache'
 			}));
-			spriteData.img.pipe(gulp.dest(dirs._build+'/img/sprite/'));
+            //spriteData.img.pipe(gulp.dest(dirs._build+'/img/sprite/'));
+			spriteData.img.pipe(gulp.dest('img/sprite/'));
 			spriteData.css.pipe(gulp.dest(dirs._assets+'/scss/molecules/'));
 		});
 
@@ -108,7 +116,8 @@ var gulp 		= require('gulp'),
                     style: "compressed"
                 }))
                 .on('error', function (err) { console.log(err.message); })
-                .pipe(gulp.dest(dirs._build+"/css"))
+                //.pipe(gulp.dest(dirs._build+"/css"))
+                .pipe(gulp.dest("css"))
                 .pipe(plugins.livereload())
                 .pipe(reload({stream:true}));
     	});
@@ -151,7 +160,8 @@ var gulp 		= require('gulp'),
     		    .pipe(gulp.dest(dirs._build+"/js"))
     		    .pipe(plugins.rename({suffix: ".min"}))
     		    .pipe(plugins.uglify())
-    		    .pipe(gulp.dest(dirs._build+"/js"))
+                //.pipe(gulp.dest(dirs._build+"/js"))
+    		    .pipe(gulp.dest("js"))
                 .pipe(plugins.livereload())
     		    .pipe(reload({stream:true}));
 
@@ -179,7 +189,8 @@ var gulp 		= require('gulp'),
                 .pipe(plugins.concat('html5shiv-respond.js'))
                 .pipe(plugins.rename({suffix: ".min"}))
                 .pipe(plugins.uglify())
-                .pipe(gulp.dest(dirs._build+"/js/libs/"));
+                //.pipe(gulp.dest(dirs._build+"/js/libs/"));
+                .pipe(gulp.dest("js/libs/"));
         });
 
 	// BROWSER SYNC ------------------------------------------------------
